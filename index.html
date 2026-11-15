@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>November 15, 2002</title>
+  <meta name="description" content="A little anniversary card for Mom & Dad.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="envelope-screen" id="start">
+      <div class="stamp">NOV<br>15<br>2002</div>
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the anniversary card">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <p class="tiny">FOR MOM & DAD</p>
+          <h1>A little<br>something</h1>
+          <p>from November 15, 2002 →</p>
+        </div>
+      </div>
+      <button class="open-button" id="openButton">Open card</button>
+    </section>
+
+    <section class="card" id="card" aria-hidden="true">
+      <header class="hero">
+        <p class="eyebrow">NOVEMBER 15, 2002 → NOVEMBER 15, 2026</p>
+        <h2>24 years.<br>Not bad.</h2>
+        <p class="intro">Happy anniversary to my favorite long-running duo.</p>
+      </header>
+
+      <div class="photo-feature">
+        <img src="assets/parents-cruise.jpg" alt="Mom and Dad together on a cruise">
+        <div class="photo-note">still looking pretty good, tbh</div>
+      </div>
+
+      <section class="interactive">
+        <button class="ticket" data-target="timecapsule">
+          <span class="ticket-icon">✦</span>
+          <span><b>What was happening in 2002?</b><small>open the time capsule</small></span>
+          <span>↗</span>
+        </button>
+
+        <div class="panel" id="timecapsule">
+          <div class="panel-heading">
+            <span>THE WORLD, NOV. 15, 2002</span>
+            <button class="close-panel" aria-label="Close">×</button>
+          </div>
+          <div class="facts">
+            <article>
+              <span class="fact-number">01</span>
+              <h3>At the movies</h3>
+              <p><em>Harry Potter and the Chamber of Secrets</em> opened that day and immediately went to #1 at the U.S. box office.</p>
+            </article>
+            <article>
+              <span class="fact-number">02</span>
+              <h3>On the radio</h3>
+              <p>“Lose Yourself” by Eminem was #1 on the U.S. charts. Very 2002.</p>
+            </article>
+            <article>
+              <span class="fact-number">03</span>
+              <h3>Meanwhile…</h3>
+              <p>People were still using flip phones, burning CDs, and arguing over AIM away messages.</p>
+            </article>
+          </div>
+          <p class="punchline">And somehow, the most important thing happening that day was you two getting married.</p>
+        </div>
+
+        <button class="ticket" data-target="gallery">
+          <span class="ticket-icon">◌</span>
+          <span><b>Evidence you still have fun</b><small>two pieces of evidence</small></span>
+          <span>↗</span>
+        </button>
+
+        <div class="panel" id="gallery">
+          <div class="panel-heading">
+            <span>RECENT EVIDENCE</span>
+            <button class="close-panel" aria-label="Close">×</button>
+          </div>
+          <div class="gallery">
+            <figure>
+              <img src="assets/parents-germany.jpg" alt="Mom and Dad dressed up in Germany">
+              <figcaption>Case file #1: apparently the costumes were non-negotiable.</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/parents-cruise.jpg" alt="Mom and Dad dressed up together on a cruise">
+              <figcaption>Case file #2: still making each other laugh.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <button class="ticket" data-target="note">
+          <span class="ticket-icon">♡</span>
+          <span><b>One last thing</b><small>this one is from me</small></span>
+          <span>↗</span>
+        </button>
+
+        <div class="panel note-panel" id="note">
+          <div class="panel-heading">
+            <span>FROM YOUR FAVORITE CHILD*</span>
+            <button class="close-panel" aria-label="Close">×</button>
+          </div>
+          <p class="big-note">Happy anniversary, Mom & Dad.</p>
+          <p>Thank you for making home feel like home, for always showing up, and for somehow still putting up with each other after 24 years.</p>
+          <p class="signature">Love,<br>Shruti</p>
+          <small>*citation needed</small>
+        </div>
+      </section>
+
+      <footer>
+        <p>11.15.2002 — 11.15.2026</p>
+        <button id="replay">↺ open the card again</button>
+      </footer>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
