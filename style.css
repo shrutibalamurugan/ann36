@@ -1,35 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap');
 
 :root {
-  --paper: #f4efe6;
+  --paper: #f5efe7;
   --ink: #28241f;
   --muted: #777066;
   --red: #9d3b32;
-  --red-dark: #7f2f28;
+  --rose: #b84f54;
+  --gold: #d7a84f;
   --line: #d9d0c3;
-  --card: #fbf8f2;
+  --card: #fffaf4;
   --shadow: 0 28px 70px rgba(48, 39, 29, .16);
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 15% 20%, rgba(157,59,50,.06), transparent 25%),
-    radial-gradient(circle at 85% 75%, rgba(157,59,50,.05), transparent 28%),
+    radial-gradient(circle at 15% 20%, rgba(184,79,84,.09), transparent 25%),
+    radial-gradient(circle at 85% 75%, rgba(215,168,79,.08), transparent 28%),
     var(--paper);
   font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 button { font: inherit; }
+.page { min-height: 100vh; padding: 28px 18px 60px; }
 
-.page {
-  min-height: 100vh;
-  padding: 28px 18px 60px;
+.sparkles {
+  position: fixed;
+  z-index: 10;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: .5em;
+  opacity: .75;
+  pointer-events: none;
+  animation: shimmer 2.5s ease-in-out infinite;
 }
 
 .envelope-screen {
@@ -56,6 +66,15 @@ button { font: inherit; }
   line-height: 1.35;
 }
 
+.rose {
+  position: absolute;
+  font-size: 40px;
+  filter: drop-shadow(0 5px 8px rgba(100,30,30,.12));
+  animation: floatRose 4s ease-in-out infinite;
+}
+.rose-one { left: 7%; bottom: 12%; transform: rotate(-14deg); }
+.rose-two { right: 9%; bottom: 18%; transform: rotate(16deg); animation-delay: -1.4s; }
+
 .envelope {
   width: min(390px, 88vw);
   aspect-ratio: 1.48;
@@ -64,7 +83,6 @@ button { font: inherit; }
   filter: drop-shadow(0 22px 30px rgba(48,39,29,.15));
   transition: transform .35s ease;
 }
-
 .envelope:hover { transform: translateY(-5px) rotate(-.5deg); }
 
 .envelope-body {
@@ -78,14 +96,12 @@ button { font: inherit; }
 }
 
 .envelope-body::after {
-  content: "";
+  content: "✦  ✧  ✦";
   position: absolute;
-  width: 170px;
-  height: 170px;
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 50%;
-  right: -55px;
-  bottom: -70px;
+  right: 18px;
+  bottom: 15px;
+  color: rgba(255,240,200,.65);
+  font-size: 15px;
 }
 
 .envelope-body h1 {
@@ -95,7 +111,6 @@ button { font: inherit; }
   font-weight: 500;
   margin: 12px 0 22px;
 }
-
 .envelope-body p:last-child { font-size: 11px; opacity: .85; }
 
 .tiny, .eyebrow, .panel-heading, .fact-number {
@@ -124,21 +139,11 @@ button { font: inherit; }
   cursor: pointer;
   transition: all .2s ease;
 }
-
 .open-button:hover { background: var(--ink); color: var(--paper); }
 
-.envelope-screen.open .envelope-flap {
-  transform: rotateX(180deg);
-}
-
-.envelope-screen.open .envelope {
-  transform: translateY(-18px);
-}
-
-.envelope-screen.open {
-  animation: fadeAway .8s 1s forwards;
-  pointer-events: none;
-}
+.envelope-screen.open .envelope-flap { transform: rotateX(180deg); }
+.envelope-screen.open .envelope { transform: translateY(-18px); }
+.envelope-screen.open { animation: fadeAway .8s 1s forwards; pointer-events: none; }
 
 .card {
   width: min(720px, 100%);
@@ -150,16 +155,33 @@ button { font: inherit; }
   transform: translateY(30px);
   pointer-events: none;
   transition: opacity .8s ease, transform .8s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.card::before,
+.card::after {
+  content: "✦";
+  position: absolute;
+  color: var(--gold);
+  font-size: 18px;
+  opacity: .55;
 }
+.card::before { top: 24px; left: 27px; }
+.card::after { bottom: 25px; right: 27px; }
+
+.card.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+.card-rose {
+  position: absolute;
+  font-size: 42px;
+  opacity: .85;
+  filter: drop-shadow(0 6px 9px rgba(100,30,30,.12));
+}
+.rose-left { top: 20px; right: 28px; transform: rotate(15deg); }
+.rose-right { bottom: 80px; left: 20px; transform: rotate(-18deg); font-size: 30px; }
 
 .hero { padding-bottom: 30px; }
-
 .eyebrow { color: var(--red); margin: 0 0 20px; }
 
 .hero h2 {
@@ -181,10 +203,9 @@ button { font: inherit; }
 
 .photo-feature {
   position: relative;
-  margin: 8px 0 44px;
+  margin: 8px 0 42px;
   transform: rotate(-1deg);
 }
-
 .photo-feature img {
   display: block;
   width: 100%;
@@ -193,15 +214,40 @@ button { font: inherit; }
   border: 10px solid white;
   box-shadow: 0 14px 30px rgba(48,39,29,.12);
 }
-
 .photo-note {
   position: absolute;
   right: 10px;
   bottom: -18px;
-  background: #e9d5a8;
+  background: #f1d6d0;
+  color: #703c38;
   padding: 9px 13px;
   transform: rotate(3deg);
   font-size: 10px;
+}
+
+.important {
+  text-align: center;
+  padding: 24px 8px 30px;
+  margin: 0 0 8px;
+}
+.important p {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 0 0 12px;
+}
+.important h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(28px, 6vw, 42px);
+  line-height: 1.12;
+  font-weight: 500;
+  margin: 0;
+}
+.sparkle-line {
+  display: block;
+  color: var(--gold);
+  letter-spacing: .45em;
+  font-size: 12px;
+  margin: 8px 0 16px;
 }
 
 .interactive { display: grid; gap: 10px; }
@@ -220,13 +266,11 @@ button { font: inherit; }
   cursor: pointer;
   transition: transform .2s ease, border-color .2s ease, background .2s ease;
 }
-
 .ticket:hover {
   transform: translateX(4px);
   border-color: var(--red);
   background: rgba(157,59,50,.035);
 }
-
 .ticket-icon {
   width: 32px;
   height: 32px;
@@ -236,9 +280,7 @@ button { font: inherit; }
   border-radius: 50%;
   color: var(--red);
 }
-
 .ticket b { display: block; font-size: 12px; font-weight: 500; }
-
 .ticket small {
   display: block;
   color: var(--muted);
@@ -252,7 +294,6 @@ button { font: inherit; }
   padding: 20px;
   animation: panelIn .35s ease;
 }
-
 .panel.active { display: block; }
 
 .panel-heading {
@@ -262,7 +303,6 @@ button { font: inherit; }
   color: var(--red);
   margin-bottom: 22px;
 }
-
 .close-panel {
   border: 0;
   background: none;
@@ -277,23 +317,19 @@ button { font: inherit; }
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
-
 .fact-number { color: var(--red); }
-
 .facts h3 {
   font-family: "Playfair Display", Georgia, serif;
   font-size: 23px;
   font-weight: 500;
   margin: 10px 0;
 }
-
 .facts p, .note-panel > p:not(.big-note) {
   font-family: Georgia, serif;
   font-size: 14px;
   line-height: 1.65;
   color: #4f4941;
 }
-
 .punchline {
   border-top: 1px solid var(--line);
   margin: 24px 0 0;
@@ -308,9 +344,7 @@ button { font: inherit; }
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
-
 .gallery figure { margin: 0; }
-
 .gallery img {
   display: block;
   width: 100%;
@@ -319,7 +353,6 @@ button { font: inherit; }
   border: 7px solid white;
   box-shadow: 0 8px 18px rgba(48,39,29,.1);
 }
-
 .gallery figcaption {
   font-size: 10px;
   line-height: 1.5;
@@ -328,22 +361,18 @@ button { font: inherit; }
 }
 
 .note-panel { text-align: left; }
-
 .big-note {
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(34px, 7vw, 48px);
   line-height: 1;
   margin: 10px 0 22px;
 }
-
 .signature {
   font-family: "Playfair Display", Georgia, serif !important;
   font-size: 19px !important;
   color: var(--ink) !important;
   margin-top: 25px;
 }
-
-.note-panel > small { color: var(--muted); font-size: 9px; }
 
 footer {
   border-top: 1px solid var(--line);
@@ -356,7 +385,6 @@ footer {
   color: var(--muted);
   font-size: 9px;
 }
-
 footer button {
   border: 0;
   background: none;
@@ -370,9 +398,16 @@ footer button {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeAway {
   to { opacity: 0; visibility: hidden; }
+}
+@keyframes shimmer {
+  0%, 100% { opacity: .45; transform: translateX(-50%) scale(.95); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+@keyframes floatRose {
+  0%, 100% { margin-bottom: 0; }
+  50% { margin-bottom: 8px; }
 }
 
 @media (max-width: 600px) {
@@ -385,5 +420,5 @@ footer button {
   .facts article:last-child { border-bottom: 0; }
   .gallery { grid-template-columns: 1fr 1fr; }
   footer { flex-direction: column; align-items: flex-start; }
+  .rose { font-size: 30px; }
 }
-
